@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿Lloverá en tu ciudad?</title>
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
+
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body id="holi">
+    <header>
+      <h1 id="mainTitle">¿LLOVERÁ EN TU CIUDAD?</h1>
+      <p id="frase">Comprueba las precipitaciones de las próximas 8 horas</p>
+      <h2 id="lloveraTitle" class="quitar">VA A LLOVER</h2>
+      <h2 id="noLloveraTitle" class="quitar">NO HABRÁ PRECIPITACIONES</h2>
+      <form name="ciudad" class="quitar">
+        <label for="tarea" class="quitar">Nueva ciudad</label>
+        <input
+          type="text"
+          name="tarea"
+          id="tarea"
+          placeholder="El tiempo en..."
+          autofocus
+          required
+          autocomplete="on"
+        />
+        <button type="submit" class="botonLupa">
+          <img class="lupa" src="./img/lupa.png" />
+        </button>
+      </form>
+      <button id="night">MODO NOCHE</button>
+    </header>
+    <main>
+      <button id="mainButton">¿LLOVERÁ?</button>
+      <p id="status"></p>
+      <p id="horaActual"></p>
+      <p id="addresActual"></p>
+      <ul id="last"></ul>
+      <!-- <ul class="weatherCurrent" class="quitar"></ul> -->
+    </main>
+    <script src="./js/script.js" type="module"></script>
+  </body>
+</html>
