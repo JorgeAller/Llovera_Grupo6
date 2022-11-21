@@ -314,6 +314,7 @@ async function main(lat, long, hora) {
   }
   if (arrayLis.includes("Rain")) {
     h2Llueve.classList.remove("quitar");
+    // bodyElement.classList.add("gotasLluvia");
   } else {
     h2NoLlueve.classList.remove("quitar");
   }

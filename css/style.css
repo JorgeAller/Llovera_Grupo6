@@ -505,7 +505,7 @@ input:hover {
   }
 }
 
-@media (max-height: 550px) {
+@media (max-height: 500px) {
   #frase.pantalla {
     display: none;
   }
@@ -521,7 +521,7 @@ input:hover {
     padding-top: 30px;
   }
   .liActualGrandeCentro {
-    height: 200px;
+    height: 175px;
   }
 
   header {
@@ -529,10 +529,14 @@ input:hover {
   }
   ul#last {
     margin-top: 0px;
-    /*     scale: 0.7;
- */
+
+    width: 100%;
     position: relative;
     bottom: 45px;
+  }
+  ul#last li {
+    scale: 0.8;
+    margin: 0;
   }
   #png_act {
     scale: 0.5;
