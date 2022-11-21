@@ -125,14 +125,15 @@ header {
 
   text-align: center;
   font-size: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 
 #frase.pantalla {
-  position: absolute;
+  position: relative;
+  /* position: absolute;
   left: 50%;
-  top: 27%;
-  transform: translate(-50%, -50%);
+  top: 25%;
+  transform: translate(-50%, -50%); */
   max-width: 200px;
   font-size: 14px;
 }
@@ -324,8 +325,7 @@ button#mainButton {
       #5777c798,
       #65B4BE
     ); */
-  background-image: linear-gradient(230deg, #759bff, #843cf6);
-  /**/
+  background-color: #843cf6;
   /* background-image: linear-gradient(
     5deg,
     #546AA9,
@@ -349,6 +349,7 @@ button#mainButton {
   width: 300px;
   cursor: pointer;
   background-size: 300%;
+  box-shadow: 7.5px 5px 7.5px 1px rgba(0, 0, 0, 0.7);
 }
 body.noche button#mainButton {
   box-shadow: 7.5px 5px 7.5px 1px rgba(255, 255, 255, 0.7);
@@ -503,5 +504,42 @@ input:hover {
   }
   #frase {
     font-size: 20px;
+  }
+}
+
+@media (max-height: 450px) {
+  #frase.pantalla {
+    display: none;
+  }
+  #lloveraTitle {
+    display: none;
+  }
+  #noLloveraTitle {
+    display: none;
+  }
+  ul.ulActualGrandeCentro {
+    position: relative;
+    scale: 0.8;
+    padding-top: 30px;
+  }
+  .liActualGrandeCentro {
+    height: 200px;
+  }
+
+  header {
+    padding-top: 50px;
+  }
+  ul#last {
+    margin-top: 0px;
+    scale: 0.7;
+    position: relative;
+    bottom: 75px;
+  }
+  #png_act {
+    scale: 0.5;
+    bottom: 170px;
+  }
+  #status {
+    display: none;
   }
 }
