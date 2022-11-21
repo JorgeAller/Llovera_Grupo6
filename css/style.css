@@ -248,8 +248,7 @@ body.noche ul#last li p:nth-child(2) {
 }
 ul#last {
   margin-top: 60px;
-  margin-right: 10px;
-  padding-left: 25px;
+
   display: flex;
   overflow-y: hidden;
   overflow-wrap: auto;
@@ -495,7 +494,6 @@ input:hover {
 
 @media (min-width: 1400px) {
   ul#last {
-    align-items: center;
     justify-content: center;
   }
 
@@ -507,7 +505,7 @@ input:hover {
   }
 }
 
-@media (max-height: 450px) {
+@media (max-height: 550px) {
   #frase.pantalla {
     display: none;
   }
@@ -531,9 +529,10 @@ input:hover {
   }
   ul#last {
     margin-top: 0px;
-    scale: 0.7;
+    /*     scale: 0.7;
+ */
     position: relative;
-    bottom: 75px;
+    bottom: 45px;
   }
   #png_act {
     scale: 0.5;
