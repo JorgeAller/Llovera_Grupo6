@@ -1,2 +1,9 @@
 # Llovera_Grupo6
-Aplicación web que muestra si va a llover en las próximas 8 horas en la localización actual.
+Web application that will show the user if it is going to rain in the next 8 hours in their current location, or in the address indicated later.
+
+Made by:
+
+- Jorge Aller Taboada
+- José Manuel Eyo Ortega
+
+HACKABOSS JSB14CO
