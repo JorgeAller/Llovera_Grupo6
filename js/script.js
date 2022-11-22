@@ -1,5 +1,5 @@
 "use strict";
-import State, { toggleMode /* saveInfo */ } from "./state.js";
+import State, { toggleMode } from "./state.js";
 console.log(State);
 
 const ulElement = document.querySelector("ul");
@@ -20,15 +20,8 @@ let imgWeatherActual;
 let descWeatherAct;
 let llueve = false;
 let llovera;
-
 let arrayLis = [];
 let liTiempoArray = [];
-
-/* const localStoragePrueba = {
-  lati: 0,
-  longi: 0,
-  horaActualSto: 0,
-}; */
 
 async function getTiempo(url) {
   try {
@@ -80,17 +73,18 @@ async function main(lat, long, hora) {
 
   //
   //
-  //
   if (data !== null) {
     const fragment = document.createDocumentFragment();
     const fragment2 = document.createDocumentFragment();
     const main = document.querySelector("main");
+
+    //
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    ESTO ES PARA LA INFO DEL TIEMPO ACTUAL, PARA PONER EN GRANDE EN EL CENTRO    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     let tiempoActual = [];
     tiempoActual[0] = data.current;
-    // console.log(tiempoActual[0]);
 
     let temperaturaAct = Math.round(tiempoActual[0].temp); // Redondee el número porque poner los decimales de la temp no lo veia muy util. Si queremos que salga solo hay que quitar el math
-    //console.log("Temperatura actual", temperaturaAct);
 
     const pTemperaturaAct = document.createElement("p");
     pTemperaturaAct.textContent = temperaturaAct + "ºC";
@@ -100,20 +94,16 @@ async function main(lat, long, hora) {
     pDatosFechaAct.textContent = timeConverter(fechaAct);
 
     let objectWeather = tiempoActual[0].weather;
-    //console.log("hola tiempo actual", objectWeather);
 
     for (let a of objectWeather) {
-      //console.log(a);
       let dataMainAct = a.main;
       let dataDescAct = a.description;
-
       let dataIconAct = a.icon;
-      //console.log("hola", dataIconAct);
 
       const pDatosLluviaMainAct = document.createElement("p");
       pDatosLluviaMainAct.textContent = dataMainAct;
 
-      // %%%%%%%%%%%%% ESTO ES PARA EL TIEMPO ACTUAL, PARA PONER EN GRANDE %%%%%%%%%%%%%%
+      // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    ESTO ES PARA LAS FOTOS DEL TIEMPO ACTUAL, PARA PONER EN GRANDE EN EL CENTRO    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       if (dataIconAct === "01d" || dataIconAct === "01n") {
         //Sol
@@ -181,6 +171,7 @@ async function main(lat, long, hora) {
     //
     //
 
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    ESTO YA ES PARA LAS FICHAS DE TIEMPO DE LAS PROXIMAS 8 HORAS    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     let horas = data.hourly;
     let horasOnly8 = horas.slice(1, 9);
     let i = 0;
@@ -216,15 +207,6 @@ async function main(lat, long, hora) {
         // variable para poner el png de los diferentes tipos de descripciones de tiempo
         let imgWeather;
         let descWeather;
-
-        // A cada descripción le asignmaos el icono que nos da la api con el codigo que viene includo en el array
-        // Luego si queremos poner nuestros iconos habria que hacerlo con if else (como está comentado despues, cambiando los enlaces por nuestros iconos)
-        // Hay dos iconos para probar, habria que buscar una familia entera de ellos. Si descomentas el if de lluvia de gran intensidad se puede ver
-        /* imgWeather = document.createElement("img");
-        imgWeather.setAttribute(
-          "src",
-          `http://openweathermap.org/img/wn/${dataIcon}@4x.png`
-        ); */
 
         // Según la página de la api, asignamos a cada Descripción el icono corresponie
 
@@ -283,7 +265,6 @@ async function main(lat, long, hora) {
         descWeather.textContent = mayusFistLetter(dataDesc);
 
         //
-        //
         // Al li que cree antes del 2º for (anidado), le metemos (append) todos los datos que necesitamos en cada hora del pronóstico
         liTiempo.append(pTemperatura);
         liTiempo.append(pDatosFecha);
@@ -292,17 +273,15 @@ async function main(lat, long, hora) {
         liTiempo.append(descWeather);
 
         const stringMain = pDatosLluviaMain.innerHTML;
-
         arrayLis.push(stringMain);
 
         /* liTiempo.append(descWeather); */
         //
         //
         liTiempo.setAttribute("id", i++);
-
+        //
         //
         // Y al fragment que creamos antes de entrar al 1º for, le metemos (append) esa info en un solo bloque para luego meterla toda junta en vez de por partes
-
         fragment.append(liTiempo);
       }
     }
@@ -314,15 +293,12 @@ async function main(lat, long, hora) {
   }
   if (arrayLis.includes("Rain")) {
     h2Llueve.classList.remove("quitar");
-    // bodyElement.classList.add("gotasLluvia");
+    // bodyElement.classList.add("gotasLluvia"); Solo está por si queremos meter un fondo de pantalla con video lluvia png
   } else {
     h2NoLlueve.classList.remove("quitar");
   }
 }
 
-/* function aVerSiLLueve() {
- 
-} */
 function getUbication() {
   ulElement.innerHTML = "";
   const status = document.querySelector("#status");
@@ -332,13 +308,10 @@ function getUbication() {
     longitude = position.coords.longitude;
     horaActual = position.timestamp;
 
-    /* date = new Date(horaActual); */
-
-    /* --- DESCOMENTAR ESTO PARA VER EL OBJETO GeolocationPosition ----*/
+    // --------- DESCOMENTAR ESTO PARA VER EL OBJETO GeolocationPosition ----------
     // let hola = position;
     // console.log(hola);
 
-    /*  status.style.display = none; */
     main(latitude, longitude, horaActual);
   }
 
@@ -355,10 +328,11 @@ function getUbication() {
   }
 }
 
-/* document.querySelector("#mainButton").addEventListener("click", getUbication); */
-
+//Función para convertir el tiempo formato timestamp, en una hora correcta
 function timeConverter(UNIXtimestamp) {
   const a = new Date(UNIXtimestamp * 1000);
+  // Todo esto comentado aquí abajo, sería para añadirle fecha al tiempo que indicamos cuando convertimos
+  //
   // const months = [
   //   "Jan",
   //   "Feb",
@@ -376,6 +350,7 @@ function timeConverter(UNIXtimestamp) {
   // const year = a.getFullYear();
   // const month = months[a.getMonth()];
   // const date = a.getDate();
+
   const hour = a.getHours();
   const min = a.getMinutes();
   const sec = a.getSeconds();
@@ -389,7 +364,8 @@ function timeConverter(UNIXtimestamp) {
 }
 
 //
-
+//
+// Función para obtener la dirección de los datos que nos da la ubicacion del navegador (lat y long)
 async function addres(lat, long) {
   try {
     // Le cambié las data1,2,3 por algo más descriptivo. Y además lo metí todo en el TryCatch por si acaso hay algun fallo al meter las coordenadas
@@ -426,17 +402,15 @@ async function addres(lat, long) {
     let direccion = "ERROR AL OBTENER LA UBICACIÓN";
     console.error("Error en la ubicación. No se pudo obtener la Dirección");
     return direccion;
-  } finally {
   }
   return null;
 }
 
+//
+//
 //Función para mirar la cantidad de cifras de un numero (para arreglar la hora)
 function getLength(number) {
   return number.toString().length;
-  //
-  //
-  //
 }
 
 // Función para poner la primer letra mayuscula de cada string que le pasemos
@@ -447,8 +421,7 @@ function mayusFistLetter(str) {
 //
 //
 //
-//
-
+// Necesidades para que funcione el boton modo noche
 const bodyElement = document.querySelector("body");
 const modeButton = document.querySelector("#night");
 const lupita = document.querySelector(".lupa");
@@ -476,10 +449,10 @@ const formCiudad = document.querySelector("form");
 const formElement = document.forms.ciudad;
 const h1Element = document.querySelector("#mainTitle");
 
-// console.log(formElement);
-
+//
 //
 
+// Asignamos evento que se ejecuta al enviar el formulario de escribir la ciudad
 formElement.addEventListener("submit", (e) => {
   e.preventDefault();
   liTiempoAct.innerHTML = "";
@@ -522,9 +495,7 @@ formElement.addEventListener("submit", (e) => {
   if (buttonMenuBurger.classList.contains("quitar") === true) {
     buttonMenuBurger.classList.remove("quitar");
   }
-  /* if (formCiudad.classList.contains("quitar") === false) {
-    formCiudad.classList.toggle("quitar");
-  } */
+
   fraseDesc8Horas.textContent = `Pronóstico de las próximas 8 horas en ${ciudadParaConvertirTxt}`;
   pHoraActual.classList.remove("quitar");
   pAddressActual.classList.remove("quitar");
@@ -552,15 +523,14 @@ header.append(buttonMenuBurger);
 // ----- Elimine la class quitar, y muestre en pantalla, la fecha/hora, la direccion y el carrusel con el pronostico
 buttonLlovera.addEventListener("click", () => {
   getUbication();
+
   if (buttonLlovera.classList.contains("quitar") === false) {
     buttonLlovera.classList.toggle("quitar");
   }
   if (buttonMenuBurger.classList.contains("quitar") === true) {
     buttonMenuBurger.classList.remove("quitar");
   }
-  /* if (formCiudad.classList.contains("quitar") === false) {
-    formCiudad.classList.toggle("quitar");
-  } */
+
   fraseDesc8Horas.textContent = "...en las próximas 8 horas";
   pHoraActual.classList.remove("quitar");
   pAddressActual.classList.remove("quitar");
@@ -569,8 +539,6 @@ buttonLlovera.addEventListener("click", () => {
   ulCurrent.classList.remove("quitar");
   h1Element.classList.add("quitar");
   fraseDesc8Horas.classList.add("pantalla");
-
-  /* saveInfo(localStoragePrueba); */
 });
 
 //
@@ -597,40 +565,3 @@ buttonMenuBurger.addEventListener("click", () => {
     h2NoLlueve.classList.toggle("quitar");
   }
 });
-
-// --------PRUEBAS PARA GUARDAR EN LOCAL STORAGE LA LATLONG-------------
-/* let getLocationPromise = () => {
-  return new Promise(function (resolve, reject) {
-    // Automatically passes the position
-    // to the callback
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
-function getLocation() {
-  getLocationPromise()
-    .then((res) => {
-      // If promise get resolved
-      const { coords, timestamp } = res;
-      localStoragePrueba.lati = coords.latitude;
-      localStoragePrueba.longi = coords.longitude;
-      localStoragePrueba.horaActualSto = timestamp;
-    })
-    .catch((error) => {
-      // If promise get rejected
-      console.log(error);
-
-      // Console.error(error);
-    });
-}
-
-getLocation();
-
-let latitudCargada;
-let longitudCargada;
-let horaCargada;
-if (State.latlong.lati != "") {
-  latitudCargada = State.latlong.lati;
-  longitudCargada = State.latlong.longi;
-  horaCargada = State.latlong.horaActualSto;
-  main(latitudCargada, longitudCargada, horaActual);
-} */

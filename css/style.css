@@ -8,6 +8,7 @@
   --height_images_tiempo: 120px;
   --width_images_tiempo: 120px;
 }
+
 body#holi.noche {
   color: white;
 
@@ -60,7 +61,7 @@ body.noche #menuGoBack {
   filter: invert(100%);
 }
 body.noche button img {
-  filter: invert();
+  filter: invert(100%);
 }
 .quitar {
   display: none;
@@ -77,11 +78,6 @@ body {
   );
   background-size: 500%;
   min-height: 100vh;
-  /* display: grid;
-  flex-direction: column;
-
-  justify-items: center;
-  place-content: center; */
 }
 @keyframes backgroundAnimado {
   0% {
@@ -109,7 +105,7 @@ header {
 #mainTitle {
   position: absolute;
   margin-block-start: 0em;
-  margin-block-end: 0m;
+  margin-block-end: 0em;
   top: 45%;
   left: 50%;
 
@@ -124,7 +120,7 @@ header {
   transform: translate(-50%, -50%);
 
   text-align: center;
-  font-size: 10px;
+  font-size: 15px;
   padding-bottom: 0px;
 }
 
@@ -141,7 +137,7 @@ header {
   width: 70%;
   margin: auto;
   text-align: center;
-  text-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+  text-shadow: 0 0 0 rgba(255, 255, 255, 1);
   animation: pulse-white 2s infinite;
 }
 
@@ -251,7 +247,7 @@ ul#last {
 
   display: flex;
   overflow-y: hidden;
-  overflow-wrap: auto;
+
   align-items: normal;
   justify-content: normal;
 
@@ -313,34 +309,10 @@ button#mainButton {
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%);
-
   font-weight: bold;
-  /* padding: 0.5rem; */
-  /* background-image: linear-gradient(
-      130deg,
-      #546AA9,
-      #6982B3,
-      #729FBC,
-      #5777c798,
-      #65B4BE
-    ); */
   background-color: #843cf6;
-  /* background-image: linear-gradient(
-    5deg,
-    #546AA9,
-    #6982B3,
-    #729FBC,
-    #A29FC8,
-    #65B4BE
-  ); */
   color: antiquewhite;
   border-radius: 8px;
-  /* width: 12vh;
-  max-width: 170px;
-  max-height: 120px;
-  min-width: 100px;
-  min-height: 70px;
-  height: 10vw; */
   font-size: large;
   border: 3px solid rgba(100, 100, 100, 0.1);
   margin-bottom: 20px;
@@ -350,20 +322,19 @@ button#mainButton {
   background-size: 300%;
   box-shadow: 7.5px 5px 7.5px 1px rgba(0, 0, 0, 0.7);
 }
+
 body.noche button#mainButton {
   box-shadow: 7.5px 5px 7.5px 1px rgba(255, 255, 255, 0.7);
 }
+
 button#mainButton:hover {
   background-image: none;
   background-color: black;
 }
+
 .quitar {
   display: none;
 }
-
-/* Hay que mirar de quitarle el fondo a las imagenes del tiempo, y luego añadirselo como un background para hacer las fichas.
-Si no, el tamaño del icono es demasiado pequeño en comparacion con el fondo y no se pueden modificar por separado.
- */
 
 .lupa {
   height: 38px;
@@ -375,14 +346,12 @@ button {
   background: none;
   border: none;
 }
+
 #tarea {
   height: 40px;
   width: 100%;
   border-radius: 20px;
 }
-/* #tarea::placeholder {
-  padding-left: 1rem;
-} */
 
 form {
   display: flex;
@@ -395,6 +364,7 @@ form {
   margin-right: 25%;
   margin-left: 31%;
 }
+
 #png_nubes {
   width: var(--width_images_tiempo);
 }
@@ -436,12 +406,6 @@ input:hover {
   border: solid white 1px;
 }
 
-/* @media (min-width: 600px) {
-  body {
-    
-  }
-} */
-
 @media (max-width: 300px) {
   #tarea {
     display: none;
@@ -480,7 +444,7 @@ input:hover {
     margin: 20px;
   }
   ul.ulActualGrandeCentro {
-    scale: 0.75;
+    transform: scale(0.75);
   }
 }
 
@@ -517,7 +481,7 @@ input:hover {
   }
   ul.ulActualGrandeCentro {
     position: relative;
-    scale: 0.8;
+    transform: scale(0.8);
     padding-top: 30px;
   }
   .liActualGrandeCentro {
@@ -535,11 +499,11 @@ input:hover {
     bottom: 45px;
   }
   ul#last li {
-    scale: 0.8;
+    transform: scale(0.8);
     margin: 0;
   }
   #png_act {
-    scale: 0.5;
+    transform: scale(0.5);
     bottom: 170px;
   }
   #status {
