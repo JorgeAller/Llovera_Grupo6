@@ -259,6 +259,11 @@ async function main(lat, long, hora) {
           imgWeather.setAttribute("id", "png_nieve");
           imgWeather.setAttribute("src", `./img/Nieve.png`);
           //
+        } else if (dataIcon === "50d" || dataIcon === "50n") {
+          //Nubes también. Como tenemos un icono de nubes, ponemos el mismo para poco nublado, medio y mucho, total no nos hace falta saber que tiempo hace
+          imgWeather = document.createElement("img");
+          imgWeather.setAttribute("id", "png_nubes");
+          imgWeather.setAttribute("src", `./img/Nublado.png`);
         }
 
         descWeather = document.createElement("p");
